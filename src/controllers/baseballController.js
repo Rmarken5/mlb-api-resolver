@@ -4,8 +4,7 @@ const analyzeData = require('../logic/analyzeData');
 
 exports.listTodaysGameFetch = function (req, res) {
     let date = new Date();
-    let team;
-    console.log(req.query);
+    let teamName;
     if (req.query) {
         if (req.query['date']) {
             date = new Date(req.query['date']);
@@ -23,7 +22,6 @@ exports.listTodaysGameFetch = function (req, res) {
         .then(result => result.json())
         .then(json => {
             if (teamName) {
-                console.log(json);
                 analyzeData.searchForGameForTeam(json.dates[0], teamName, (game) => {
                     res.send(game)
                 });
@@ -35,7 +33,6 @@ exports.listTodaysGameFetch = function (req, res) {
 }
 
 exports.getAllTeamsOnDate = function (req, res) {
-    ;
     let date = new Date();
     if (req.query &&
         req.query['date'] &&
