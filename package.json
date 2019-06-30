@@ -1,0 +1,26 @@
+{
+  "name": "sport-scraper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.16.4",
+    "node-fetch": "^2.5.0",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rmarken5/mlb-api-resolver.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rmarken5/mlb-api-resolver/issues"
+  },
+  "homepage": "https://github.com/Rmarken5/mlb-api-resolver#readme"
+}

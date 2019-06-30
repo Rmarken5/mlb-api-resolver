@@ -11,3 +11,14 @@ exports.searchForGameForTeam = function (data, teamName, fn) {
     }
 }
 
+exports.searchForTeams = function(data){
+    const array = new Array();
+    if (data && data.games.length){
+        data.games.forEach(element => {
+            array.push(element.teams.away.team.teamName);
+            array.push(element.teams.home.team.teamName);
+        });
+    }
+    return array;
+}
+
