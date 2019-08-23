@@ -3,5 +3,6 @@ module.exports = function (app) {
 
     app.get('/baseball', baseballController.listTodaysGameFetch);
     app.get('/teams', baseballController.getAllTeamsOnDate);
+    app.get('/box', baseballController.getBoxScoreSummaryByGameById );
 
 }

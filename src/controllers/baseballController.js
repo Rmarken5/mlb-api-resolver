@@ -48,3 +48,29 @@ exports.getAllTeamsOnDate = function (req, res) {
     });
 
 }
+
+
+
+exports.getBoxScoreSummaryByGameById = function (req, res) {
+
+    let gameID;
+    
+    if (req && req.query && req.query['gameID']) {
+        gameID = req.query['gameID'];
+        const summaryUrl = `https://statsapi.mlb.com/api/v1/schedule?gamePk=${gameID}&gameTypes=E,S,R,A,F,D,L,W&hydrate=team(leaders(showOnPreview(leaderCategories=[homeRuns,runsBattedIn,battingAverage],statGroup=[pitching,hitting]))),linescore(matchup,runners),flags,liveLookin,review,broadcasts(all),decisions,person,probablePitcher,stats,homeRuns,previousPlay,game(content(media(featured,epg),summary),tickets),seriesStatus(useOverride=true)&useLatestGames=false&language=en`
+        const boxUrl = `http://statsapi.mlb.com//api/v1/game/${gameID}/boxscore`;
+
+        Promise.all(
+            [fetch(summaryUrl).then(result => result.json()).then(json => analyzeData.getBoxSummary(json)),
+                fetch(boxUrl).then(result => result.json()).then(json => analyzeData.getBoxDetails(json)),
+            ]).then(promiseResults => {
+
+            let [summary, box] = [...promiseResults];
+
+            res.json({...summary, ...box});
+        });
+
+       
+    }
+
+}
