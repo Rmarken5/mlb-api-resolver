@@ -53,6 +53,9 @@ exports.getBoxSummary = function (data) {
                 const linescore = theGoodStuff.linescore
                 boxData['currentInning'] = linescore.currentInning || 1;
                 boxData['inningState'] = linescore.inningState || 'top';
+                boxData['balls'] = linescore.balls || 0;
+                boxData['strikes'] = linescore.strikes || 0;
+                boxData['outs'] = linescore.outs || 0;
 
                 if (linescore.offense) {
                     boxData['first'] = linescore.offense.first ? true : false;
